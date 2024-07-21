@@ -9,10 +9,12 @@ function TodoList(){
 
     function deleteTodoBox(key){
         let tmpBoxArr = todoBox;
+        let tmpArr = new Array();
         for(let i = 0; i<tmpBoxArr.length; i++){
-            if(key == tmpBoxArr[i].id)
-                tmpBoxArr;
+            if(key != tmpBoxArr[i].id)
+                tmpArr.push(tmpBoxArr[i]);
         }
+        setTextBox(tmpArr);
     }
 
 
@@ -27,6 +29,7 @@ function TodoList(){
         if(todoText != ''){
             tmpBox.push({id:todoKey,time: koreaTime,text:todoText});
             setKey(todoKey+1);
+            console.log(todoKey);
             setTextBox(tmpBox);
         }
     },[todoText]);
@@ -36,7 +39,7 @@ function TodoList(){
             <TodoInputBox setText={setText}/>
             <div>
                 <ul>
-                    {todoBox.map(todo => <TodoBox key={todo.id} time={todo.time} text={todo.text} action={deleteTodoBox}/>)}
+                    {todoBox.map(todo => <TodoBox id={todo.id} time={todo.time} text={todo.text} action={(e)=>{deleteTodoBox(e);}}/>)}
                 </ul>
             </div>
         </>

@@ -9,7 +9,7 @@ function TodoBox(props){
     }
 
     function onClickComplete(){
-        props.deleteTodoBox(props.key);
+        props.action(props.id);
     }
 
     return (
